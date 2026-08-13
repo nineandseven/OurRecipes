@@ -1,0 +1,88 @@
+/* =========================================================
+           THEME
+        ========================================================= */
+
+:root {
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+
+    --header-height: 72px;
+
+    --transition:
+        0.2s ease;
+
+}
+
+
+body[data-theme="light"] {
+
+    --bg: #f7f7f5;
+
+    --surface: #ffffff;
+
+    --surface-soft: #f1f1ee;
+
+    --surface-hover: #eeeeeb;
+
+    --text: #171717;
+
+    --text-secondary: #666666;
+
+    --text-muted: #999999;
+
+    --border: #e4e4e1;
+
+    --accent: #171717;
+
+    --accent-text: #ffffff;
+
+    --danger: #d94b4b;
+
+    --overlay:
+        rgba(0, 0, 0, 0.45);
+
+    --shadow-sm:
+        0 2px 12px rgba(0, 0, 0, 0.05);
+
+    --shadow-md:
+        0 15px 40px rgba(0, 0, 0, 0.10);
+
+}
+
+
+body[data-theme="dark"] {
+
+    --bg: #111111;
+
+    --surface: #1b1b1b;
+
+    --surface-soft: #242424;
+
+    --surface-hover: #2c2c2c;
+
+    --text: #f5f5f5;
+
+    --text-secondary: #a8a8a8;
+
+    --text-muted: #707070;
+
+    --border: #303030;
+
+    --accent: #f5f5f5;
+
+    --accent-text: #111111;
+
+    --danger: #ff7070;
+
+    --overlay:
+        rgba(0, 0, 0, 0.70);
+
+    --shadow-sm:
+        0 2px 12px rgba(0, 0, 0, 0.25);
+
+    --shadow-md:
+        0 15px 40px rgba(0, 0, 0, 0.45);
+
+}
