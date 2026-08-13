@@ -3,10 +3,10 @@ const CACHE_NAME = "our-recipes-v1";
 const CACHE_FILES = [
   "./",
   "./index.html",
-  "../css/",
-  "../js/",
-  "../manifest.json",
-  "..images/"
+  "./css/",
+  "./js/",
+  "./manifest.json",
+  "./images/"
 ];
 
 self.addEventListener("install", (event) => {
