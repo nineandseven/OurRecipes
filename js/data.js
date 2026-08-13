@@ -58,7 +58,7 @@ const recipes = [
     time: 10,
     servings: 1,
     difficulty: "簡單",
-    tags: [RECIPE_TAGS.CHICKEN, RECIPE_TAGS.TOMATO],
+    tags: [RECIPE_TAGS.EGG],
     ingredients: [
       "起酥片 數片",
       "蛋黃 少許",
@@ -71,5 +71,5 @@ const recipes = [
       "撒上黑芝麻增添香氣。",
       "氣炸鍋 190° / 5分鐘。"
     ],
-  }
+  },
 ];

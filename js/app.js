@@ -138,22 +138,22 @@ function renderRecipes() {
 }
 
 function createRecipeCard(recipe) {
-    const favorite = isFavorite(recipe.id);
-    const image = recipe.image
-        ? `
+  const favorite = isFavorite(recipe.id);
+  const image = recipe.image
+    ? `
             <img
                 src="${recipe.image}"
                 alt="${escapeHtml(recipe.title)}"
                 loading="lazy"
             >
         `
-        : `
+    : `
             <div class="recipe-image-placeholder">
                 <span class="material-symbols-rounded">restaurant</span>
             </div>
         `;
 
-    return `
+  return `
         <article class="recipe-card" data-id="${recipe.id}">
             <div class="recipe-image">
                 ${image}
@@ -170,9 +170,7 @@ function createRecipeCard(recipe) {
 
             <div class="recipe-content">
                <div class="recipe-category">
-                    ${escapeHtml(
-                        RECIPE_CATEGORY_LABELS[recipe.category]
-                    )}
+                    ${escapeHtml(RECIPE_CATEGORY_LABELS[recipe.category])}
                 </div>
 
                 <h3 class="recipe-title">
@@ -184,11 +182,16 @@ function createRecipeCard(recipe) {
                 </p>
 
                 <div class="recipe-tags">
-                    ${recipe.tags.slice(0, 3).map(tag => `
+                    ${recipe.tags
+                      .slice(0, 3)
+                      .map(
+                        (tag) => `
                         <span class="recipe-tag">
                             ${escapeHtml(getTagLabel(tag))}
                         </span>
-                    `).join("")}
+                    `,
+                      )
+                      .join("")}
                 </div>
 
                 <div class="recipe-meta">
@@ -218,9 +221,11 @@ function updateMenuCounts() {
 }
 
 function renderTags() {
-    const tags = Object.values(RECIPE_TAGS);
+  const tags = Object.values(RECIPE_TAGS);
 
-    elements.tagList.innerHTML = tags.map(tag => `
+  elements.tagList.innerHTML = tags
+    .map(
+      (tag) => `
         <button
             class="tag ${state.tag === tag ? "active" : ""}"
             type="button"
@@ -228,15 +233,19 @@ function renderTags() {
         >
             ${escapeHtml(getTagLabel(tag))}
         </button>
-    `).join("");
+    `,
+    )
+    .join("");
 
-    bindTagEvents();
+  bindTagEvents();
 }
 
 function renderCategoryToolbar() {
-    const categories = Object.values(RECIPE_CATEGORIES);
+  const categories = Object.values(RECIPE_CATEGORIES);
 
-    elements.categoryToolbar.innerHTML = categories.map(category => `
+  elements.categoryToolbar.innerHTML = categories
+    .map(
+      (category) => `
         <button
             class="category-button ${state.category === category ? "active" : ""}"
             type="button"
@@ -244,9 +253,11 @@ function renderCategoryToolbar() {
         >
             ${escapeHtml(RECIPE_CATEGORY_LABELS[category])}
         </button>
-    `).join("");
+    `,
+    )
+    .join("");
 
-    bindCategoryEvents();
+  bindCategoryEvents();
 }
 
 /* =========================================================
@@ -291,24 +302,22 @@ function bindSearchEvent() {
 ========================================================= */
 
 function bindCategoryEvents() {
-    const buttons = elements.categoryToolbar.querySelectorAll(
-        "[data-category]"
-    );
+  const buttons = elements.categoryToolbar.querySelectorAll("[data-category]");
 
-    buttons.forEach(button => {
-        button.addEventListener("click", () => {
-            const category = button.dataset.category;
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const category = button.dataset.category;
 
-            if (state.category === category) {
-                state.category = "";
-            } else {
-                state.category = category;
-            }
+      if (state.category === category) {
+        state.category = "";
+      } else {
+        state.category = category;
+      }
 
-            renderCategoryToolbar();
-            renderRecipes();
-        });
+      renderCategoryToolbar();
+      renderRecipes();
     });
+  });
 }
 
 /* =========================================================
@@ -316,22 +325,22 @@ function bindCategoryEvents() {
 ========================================================= */
 
 function bindTagEvents() {
-    elements.tags = document.querySelectorAll(".tag");
+  elements.tags = document.querySelectorAll(".tag");
 
-    elements.tags.forEach(button => {
-        button.addEventListener("click", () => {
-            const tag = button.dataset.tag;
+  elements.tags.forEach((button) => {
+    button.addEventListener("click", () => {
+      const tag = button.dataset.tag;
 
-            if (state.tag === tag) {
-                state.tag = "";
-            } else {
-                state.tag = tag;
-            }
+      if (state.tag === tag) {
+        state.tag = "";
+      } else {
+        state.tag = tag;
+      }
 
-            renderTags();
-            renderRecipes();
-        });
+      renderTags();
+      renderRecipes();
     });
+  });
 }
 
 /* =========================================================
@@ -419,7 +428,7 @@ function openRecipe(id) {
 
   elements.modalImage.src = recipe.image;
   elements.modalImage.alt = recipe.title;
-  elements.modalCategory.textContent = recipe.category;
+  elements.modalCategory.textContent = RECIPE_CATEGORY_LABELS[recipe.category];
   elements.modalTitle.textContent = recipe.title;
   elements.modalDescription.textContent = recipe.description;
 
@@ -513,18 +522,27 @@ function getTheme() {
 function setTheme(theme) {
   document.documentElement.dataset.theme = theme;
   updateThemeIcon(theme);
+  updateThemeColor(theme);
 }
 
 function updateThemeIcon(theme) {
-  const icon = elements.themeButton?.querySelector(
-    ".material-symbols-rounded",
-  );
+  const icon = elements.themeButton?.querySelector(".material-symbols-rounded");
 
   if (!icon) {
     return;
   }
 
   icon.textContent = theme === "dark" ? "light_mode" : "dark_mode";
+}
+
+function updateThemeColor(theme) {
+  const meta = document.querySelector('meta[name="theme-color"]');
+
+  if (!meta) {
+    return;
+  }
+
+  meta.content = theme === "dark" ? "#111111" : "#f7f7f5";
 }
 
 function toggleTheme() {
@@ -567,7 +585,7 @@ function escapeHtml(value) {
 }
 
 function getTagLabel(tag) {
-    return RECIPE_TAG_LABELS[tag] || tag;
+  return RECIPE_TAG_LABELS[tag] || tag;
 }
 
 /* =========================================================
