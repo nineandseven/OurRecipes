@@ -12,7 +12,7 @@ self.addEventListener("install", event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(async cache => {
-                for (const url of APP_SHELL) {
+                for (const url of CACHE_FILES) {
                     try {
                         await cache.add(url);
                         console.log("[SW] Cached:", url);
