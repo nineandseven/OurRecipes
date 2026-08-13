@@ -1,18 +1,21 @@
 const CACHE_NAME = "our-recipes-v1";
 
+const BASE_PATH = self.registration.scope;
+
 const CACHE_FILES = [
-  "./",
-  "./index.html",
-  "./css/",
-  "./js/",
-  "./manifest.json",
-  "./images/"
+    BASE_PATH,
+    `${BASE_PATH}index.html`,
+    `${BASE_PATH}css/`,
+    `${BASE_PATH}js/`,
+    `${BASE_PATH}manifest.json`,
+    `${BASE_PATH}images/`
 ];
+
 self.addEventListener("install", event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(async cache => {
-                for (const url of CACHE_FILES) {
+                for (const url of APP_SHELL) {
                     try {
                         await cache.add(url);
                         console.log("[SW] Cached:", url);
