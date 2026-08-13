@@ -46,8 +46,6 @@ const elements = {
   categoryToolbar: document.querySelector("#categoryToolbar"),
 };
 
-const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
-
 /* =========================================================
    STORAGE
 ========================================================= */
@@ -496,6 +494,7 @@ function bindModalEvents() {
 /* =========================================================
    THEME
 ========================================================= */
+const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
 function getSystemTheme() {
   return systemTheme.matches ? "dark" : "light";
@@ -512,7 +511,7 @@ function getTheme() {
 }
 
 function setTheme(theme) {
-  elements.body.dataset.theme = theme;
+  document.documentElement.dataset.theme = theme;
   updateThemeIcon(theme);
 }
 
@@ -529,7 +528,7 @@ function updateThemeIcon(theme) {
 }
 
 function toggleTheme() {
-  const currentTheme = elements.body.dataset.theme;
+  const currentTheme = document.documentElement.dataset.theme;
   const nextTheme = currentTheme === "dark" ? "light" : "dark";
 
   localStorage.setItem(STORAGE_KEYS.theme, nextTheme);
