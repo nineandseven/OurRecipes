@@ -36,8 +36,6 @@ html {
 }
 
 body {
-    background: var(--bg);
-    color: var(--text);
 
     font-family:
         -apple-system,
