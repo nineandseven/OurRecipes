@@ -3,7 +3,6 @@ body {
         "Zen Maru Gothic",
         "Noto Sans TC",
         sans-serif;
-    background: color-mix(in srgb, var(--surface) 92%, transparent);
 }
 
 .material-symbols-rounded {
